@@ -1,4 +1,4 @@
-## Problem 1. Vector Algebra
+## Problem 1. Vector Algebra for the L6 Physcics Basics
 
 Given  
 $\vec{a}=[2,1,-3]$ and $\vec{b}=[4,-2,1]$.
@@ -73,5 +73,3 @@ $$
 4&-2&1
 \end{vmatrix}.
 $$
-
-Compute components:
