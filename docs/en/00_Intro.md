@@ -24,6 +24,8 @@ Consider the Universal Law of Gravitation: $F = G \frac{m_1 m_2}{r^2}$, where $F
 
 The formula for the period of a simple pendulum is $T = 2\pi \sqrt{\frac{L}{g}}$. Rearrange the equation give a formula for $g$ (acceleration due to gravity).
 
+To isolate $g$ from the formula $T = 2\pi \sqrt{\frac{L}{g}}$, follow these algebraic steps:Divide by $2\pi$:$$\frac{T}{2\pi} = \sqrt{\frac{L}{g}}$$Square both sides to remove the radical:$$\left( \frac{T}{2\pi} \right)^2 = \frac{L}{g}$$which simplifies to:$$\frac{T^2}{4\pi^2} = \frac{L}{g}$$Invert both sides (or cross-multiply) to bring $g$ to the top:$$\frac{4\pi^2}{T^2} = \frac{g}{L}$$Multiply by $L$ to solve for $g$:$$g = \frac{4\pi^2 L}{T^2}$$
+
 ## 5. Trigonometry
 
 A vector $\vec{A}$ has a magnitude of $15$ and makes an angle of $\theta = 60^\circ$ with the horizontal axis. Calculate its horizontal and vertical components.
