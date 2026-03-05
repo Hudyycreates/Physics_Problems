@@ -24,6 +24,14 @@ Consider the Universal Law of Gravitation: $F = G \frac{m_1 m_2}{r^2}$, where $F
 
 The formula for the period of a simple pendulum is $T = 2\pi \sqrt{\frac{L}{g}}$. Rearrange the equation give a formula for $g$ (acceleration due to gravity).
 
+import sympy
+
+T, L, g, pi = sympy.symbols('T L g pi')
+equation = sympy.Eq(T, 2 * pi * sympy.sqrt(L / g))
+solution = sympy.solve(equation, g)
+print(solution)
+
+
 ## 5. Trigonometry
 
 A vector $\vec{A}$ has a magnitude of $15$ and makes an angle of $\theta = 60^\circ$ with the horizontal axis. Calculate its horizontal and vertical components.
