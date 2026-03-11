@@ -61,7 +61,7 @@ $$x = 2 + 1$$
 
 
 * **Graphical Intersection:** The solution **(3, 2)** is the precise coordinate where these two lines cross on a Cartesian plane.
-
+[Graphical representation](https://www.geogebra.org/calculator/xzqytcva)
 
 
 
@@ -120,4 +120,5 @@ $$-y = -2$$
   $3 - 2 = 1$ ✅
 
 ---
+
 
