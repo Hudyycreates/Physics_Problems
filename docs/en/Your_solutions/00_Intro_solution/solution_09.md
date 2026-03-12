@@ -1,4 +1,4 @@
-# Optimization Problem: Maximum Area Rectangle
+# 9. Maximum Area Rectangle
 
 To find the dimensions of the rectangle with the maximum area under the curve $y = 3 - x^2$ in the first quadrant, we follow these steps:
 
@@ -40,7 +40,7 @@ $$A''(1) = -6(1) = -6$$
 
 Since $A''(1) < 0$, the function is concave down at this point, confirming a local maximum.
 
-!
+
 
 ### 5. Determine the Dimensions
 Now, we find the corresponding height $y$ and the maximum area:
@@ -53,3 +53,4 @@ Now, we find the corresponding height $y$ and the maximum area:
 The dimensions of the rectangle with the maximum area are:
 * **Width:** $1$
 * **Height:** $2$
+
