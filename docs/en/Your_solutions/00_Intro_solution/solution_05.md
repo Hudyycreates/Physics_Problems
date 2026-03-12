@@ -55,3 +55,5 @@ $$A_y = 15 \cdot 0.866$$
     $$\sqrt{7.5^2 + 12.99^2} \approx \sqrt{56.25 + 168.74} \approx \sqrt{224.99} \approx 15$$
 
     The result matches our original magnitude, confirming the resolution is accurate.
+
+![alt text](plot.png)
