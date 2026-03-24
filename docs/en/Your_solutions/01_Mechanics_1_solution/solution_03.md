@@ -1,18 +1,18 @@
-# 🗺️ Path Intersection: Alice & Bob
+# Path Intersection: Alice & Bob
 
 > **Problem:** Alice moves along $A(t) = (2+t,\ 8-3t)$ and Bob moves along $B(t) = (2t-1,\ 2t+2)$.  
 > Determine if their paths intersect. If yes, find when and where they collide. If no, find the minimum distance and when it occurs.
 
 ---
 
-## 📌 The Setup
+##  The Setup
 
 | Person | Position at time $t$ | x-component | y-component |
 |--------|----------------------|-------------|-------------|
 | Alice  | $A(t) = (2+t,\ 8-3t)$ | $2+t$ | $8-3t$ |
 | Bob    | $B(t) = (2t-1,\ 2t+2)$ | $2t-1$ | $2t+2$ |
 
-> ⚠️ **Key distinction:**  
+>  **Key distinction:**  
 > - **Path intersection** — do the *curves* share a common point? (can be at different times)  
 > - **Collision** — are they at the *same point at the same time*?
 
@@ -112,7 +112,7 @@ $$B\!\left(\frac{33}{26}\right) = \left(\frac{40}{26},\ \frac{118}{26}\right) \a
 
 ---
 
-## 📊 Summary of Results
+## Summary of Results
 
 | Question | Answer |
 |----------|--------|
