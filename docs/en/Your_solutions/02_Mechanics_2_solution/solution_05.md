@@ -39,10 +39,9 @@ $$KE_{before} = \frac{1}{2}(70)(3)^2 = 315\ \text{J}$$
 
 $$KE_{after} = \frac{1}{2}(210)(1.0)^2 = 105\ \text{J}$$
 
-$$\Delta KE = 210\ \text{J lost} \approx \boxed{66.7\%\ \text{of KE lost}}$$
+$$\Delta KE = 210\ \text{J lost} \quad \Rightarrow \quad 66.7\%\ \text{ of total KE lost}$$
 
 > ❌ Kinetic energy is **not** conserved — lost to heat, sound, and deformation.
-
 ---
 
 ## Full Picture Summary
