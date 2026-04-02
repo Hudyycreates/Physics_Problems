@@ -44,15 +44,3 @@ Substitute into $x(t)$ to get $x_{max}$.
 
 ---
 
-## Part 4 — Numerical Simulation (JavaScript)
-```javascript
-// Euler method for mdv/dt = -mg - kv
-const g = 9.8, dt = 0.01;
-let v = v0, x = x0;
-while (x >= 0) {
-  v += (-g - (k/m)*v) * dt;
-  x += v * dt;
-}
-```
-
-> Decrease $dt$ for higher accuracy. RK4 gives better results for stiff drag values.
