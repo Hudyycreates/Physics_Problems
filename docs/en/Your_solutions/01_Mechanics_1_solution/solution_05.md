@@ -15,26 +15,6 @@ $$\vec{v}_{\text{resultant}} = \vec{v}_{\text{boat}} + \vec{v}_{\text{river}}$$
 
 Since the boat wants to travel **directly north** despite an eastward current, it must aim at an angle **west of north** so the current's eastward push is exactly cancelled.
 
----
-
-## Setting Up the Vector Diagram
-
-Define the coordinate system:
-- Positive $x$-axis: East
-- Positive $y$-axis: North
-
-**River current vector:**
-$$\vec{v}_{\text{river}} = 2\hat{i} \quad \text{(eastward, 2 m/s)}$$
-
-**Boat velocity vector** — the boat heads at angle $\theta$ west of north, so:
-$$\vec{v}_{\text{boat}} = -5\sin\theta\,\hat{i} + 5\cos\theta\,\hat{j}$$
-
-The minus sign on the $\hat{i}$ term reflects that the boat steers westward to counteract the current.
-
-**Resultant velocity:**
-$$\vec{v}_{\text{resultant}} = (2 - 5\sin\theta)\hat{i} + (5\cos\theta)\hat{j}$$
-
----
 
 ## Step 1 — Find the Required Heading Angle
 
