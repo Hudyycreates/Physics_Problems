@@ -1,84 +1,121 @@
-# Problem 12: Work and Energy with a Constant Force
+# Work and Energy: Calculus-Based Solution
+
+## 1. Initial Parameters
+
+* **Mass ($m$):** $2$ kg
+* **Constant Force ($\vec{F}$):** $[6, 2]$ N
+* **Initial Velocity ($\vec{v}_0$):** $[1, -1]$ m/s
+* **Initial Position ($\vec{r}_0$):** $[0, 0]$ m
 
 ---
 
-## 1. Given Data
+## 2. Deriving Kinematics through Integration
 
-* **Mass ($m$):** $2 \text{ kg}$
-* **Constant Force ($\vec{F}$):** $(6, 2) \text{ N}$
-* **Initial Velocity ($\vec{v}_0$):** $(1, -1) \text{ m/s}$
-* **Initial Position ($\vec{r}_0$):** $(0, 0) \text{ m}$
+### Step 1: Acceleration Vector $\vec{a}(t)$
 
----
+Using Newton's Second Law:
+$$\vec{a} = \frac{\vec{F}}{m}$$
 
-## 2. Kinematic Analysis
+$$\vec{a}(t) = \left[ \frac{6}{2}, \frac{2}{2} \right]$$
 
-### Part 1: Acceleration
-Using Newton’s Second Law, the acceleration is constant:
-
-$$\vec{a} = \frac{\vec{F}}{m} = \left( \frac{6}{2}, \frac{2}{2} \right) = \mathbf{(3, 1) \text{ m/s}^2}$$
-
-
-### Part 2: Velocity as a Function of Time
-Using the kinematic equation for constant acceleration:
-
-$$\vec{v}(t) = \vec{v}_0 + \vec{a}t$$
-
-$$\vec{v}(t) = (1, -1) + (3, 1)t = \mathbf{(1 + 3t, -1 + t) \text{ m/s}}$$
-
-
-### Part 3: Position as a Function of Time
-Applying the displacement formula:
-
-$$\vec{r}(t) = \vec{r}_0 + \vec{v}_0t + \frac{1}{2}\vec{a}t^2$$
-
-$$\vec{r}(t) = (0, 0) + (1, -1)t + \frac{1}{2}(3, 1)t^2 = \mathbf{\left( t + \frac{3}{2}t^2, -t + \frac{1}{2}t^2 \right) \text{ m}}$$
+**Result:**
+$$\vec{a}(t) = [3, 1] \text{ m/s}^2$$
 
 ---
 
-## 3. Trajectory and Work
+### Step 2: Velocity Vector $\vec{v}(t)$
 
-### Part 4: Trajectory (Path of Motion)
-The parametric equations for the path are:
+Velocity is the integral of acceleration with respect to time:
+$$\vec{v}(t) = \int \vec{a} \, dt = \int [3, 1] \, dt$$
 
-* $x(t) = t + 1.5t^2$
-* $y(t) = -t + 0.5t^2$
+$$\vec{v}(t) = [3t + C_x, t + C_y]$$
 
-Since acceleration is constant and directed at $(3, 1)$, the trajectory is a **parabola** that curves toward the direction of the applied force.
+Using the initial condition $\vec{v}(0) = [1, -1]$:
+* $3(0) + C_x = 1 \implies C_x = 1$
+* $0 + C_y = -1 \implies C_y = -1$
 
-
-### Part 5: Work Done by the Force at $t = 3 \text{ s}$
-First, calculate the displacement vector $\Delta \vec{r}$ at $t = 3$:
-
-$$\vec{r}(3) = \left( 3 + \frac{3}{2}(9), -3 + \frac{1}{2}(9) \right) = (16.5, 1.5) \text{ m}$$
-
-Since $\vec{r}_0 = (0,0)$, then $\Delta \vec{r} = (16.5, 1.5) \text{ m}$.
-
-**Work Calculation ($W = \vec{F} \cdot \Delta \vec{r}$):**
-
-$$W = (6 \times 16.5) + (2 \times 1.5) = 99 + 3 = \mathbf{102 \text{ J}}$$
+**Result:**
+$$\vec{v}(t) = [3t + 1, t - 1] \text{ m/s}$$
 
 ---
 
-## 4. Verification: Work–Energy Theorem
-The theorem states that the net work equals the change in kinetic energy: $W = \Delta KE$.
+### Step 3: Position Vector $\vec{r}(t)$
 
+Position is the integral of velocity with respect to time:
+$$\vec{r}(t) = \int \vec{v}(t) \, dt = \int [3t + 1, t - 1] \, dt$$
 
-### Initial Kinetic Energy ($t = 0$)
+$$\vec{r}(t) = \left[ \frac{3}{2}t^2 + t + K_x, \frac{1}{2}t^2 - t + K_y \right]$$
 
-$$KE_0 = \frac{1}{2} m v_0^2 = \frac{1}{2} \times 2 \times (1^2 + (-1)^2) = \mathbf{2 \text{ J}}$$
+Using the initial condition $\vec{r}(0) = [0, 0]$:
+* $K_x = 0$
+* $K_y = 0$
 
+**Result:**
+$$\vec{r}(t) = [1.5t^2 + t, 0.5t^2 - t] \text{ m}$$
 
-### Final Kinetic Energy ($t = 3$)
-Find the velocity at $t = 3 \text{ s}$:
+---
 
-$$\vec{v}(3) = (1 + 9, -1 + 3) = (10, 2) \text{ m/s}$$
+## 3. Trajectory Analysis
 
-$$KE_f = \frac{1}{2} \times 2 \times (10^2 + 2^2) = \mathbf{104 \text{ J}}$$
+### Step 4: Path of Motion (Trajectory)
 
+To understand the path, we look at the parametric equations for $x$ and $y$:
+1. $x(t) = 1.5t^2 + t$
+2. $y(t) = 0.5t^2 - t$
 
-### Comparison
+**Description:**
+Since the acceleration vector $[3, 1]$ is constant and the initial velocity is not parallel to the force, the body follows a **parabolic path**. 
 
-$$\Delta KE = 104\text{ J} - 2\text{ J} = \mathbf{102 \text{ J}}$$
+As $t \to \infty$, the quadratic terms dominate, and the trajectory aligns more closely with the direction of the force vector.
 
-**Conclusion:** The change in kinetic energy matches the work calculated ($102\text{ J}$), confirming the **Work–Energy Theorem**.
+---
+
+## 4. Work Calculation ($t = 3$ s)
+
+To find the work done, we use the line integral of power over time:
+$$W = \int_{0}^{3} \vec{F} \cdot \vec{v}(t) \, dt$$
+
+### Step 5: Dot Product Calculation
+
+$$\vec{F} \cdot \vec{v}(t) = [6, 2] \cdot [3t + 1, t - 1]$$
+$$= 6(3t + 1) + 2(t - 1)$$
+$$= 18t + 6 + 2t - 2$$
+$$\vec{F} \cdot \vec{v}(t) = 20t + 4$$
+
+---
+
+### Step 6: Integration for Work
+
+$$W = \int_{0}^{3} (20t + 4) \, dt$$
+$$W = \left[ 10t^2 + 4t \right]_{0}^{3}$$
+$$W = (10(3)^2 + 4(3)) - 0$$
+
+**Total Work Done:**
+$$W = 102 \text{ J}$$
+
+---
+
+## 5. Work-Energy Theorem Verification
+
+### Step 7: Change in Kinetic Energy ($\Delta KE$)
+
+Kinetic Energy formula: $KE = \frac{1}{2}m|\vec{v}|^2$. Since $m=2$, $KE = |\vec{v}|^2$.
+
+**At $t = 0$ s:**
+$$\vec{v}(0) = [1, -1]$$
+$$KE_i = (1)^2 + (-1)^2 = 2 \text{ J}$$
+
+**At $t = 3$ s:**
+$$\vec{v}(3) = [3(3)+1, (3)-1] = [10, 2]$$
+$$KE_f = (10)^2 + (2)^2 = 104 \text{ J}$$
+
+**Change in Energy:**
+$$\Delta KE = 104 - 2 = 102 \text{ J}$$
+
+---
+
+### Final Conclusion
+
+The work done calculated via integration ($102$ J) is identical to the change in kinetic energy ($102$ J). 
+
+**The Work-Energy Theorem is verified.**
