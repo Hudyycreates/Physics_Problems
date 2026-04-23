@@ -1,106 +1,75 @@
-# Section 3 — Problem 10: Superposition of Wave Sources
+### Question 10: Animation: Wave Sources
 
-##  Conceptual Introduction
-
-A point source located at position $\vec{r}_0$ emits circular (or spherical)
-waves that spread outward in all directions. The displacement at any
-field point $\vec{r}$ due to that single source is:
-
-$$u(\vec{r}, t) = \frac{A}{|\vec{r} - \vec{r}_0|^\alpha}\sin\!\left(k|\vec{r}-\vec{r}_0| - \omega t\right)$$
-
-| Symbol | Meaning |
-|--------|---------|
-| $|\vec{r} - \vec{r}_0|$ | Distance from the source to the field point |
-| $A$ | Source amplitude |
-| $\alpha \in [0, 2]$ | Spatial decay exponent — controls how fast amplitude falls with distance |
-| $k = 2\pi/\lambda$ | Wavenumber |
-| $\omega$ | Angular frequency |
-
-When $\alpha = 0$: amplitude is constant everywhere (plane wave approximation).
-When $\alpha = 1$: amplitude falls as $1/r$ (correct for 2D circular waves, e.g. ripples on water).
-When $\alpha = 2$: amplitude falls as $1/r^2$ (3D spherical wave intensity law).
-
-When multiple sources are present, the **superposition principle** gives:
-
-$$u_{total}(\vec{r}, t) = \sum_{i} \frac{A}{|\vec{r} - \vec{r}_i|^\alpha}\sin\!\left(k|\vec{r}-\vec{r}_i| - \omega t\right)$$
-
-The resulting pattern of constructive and destructive interference
-depends on the positions of the sources, the wavelength, and $\alpha$.
+**Write an animation in which it is possible to place dots that will serve as sources of waves described by the equation:**
+$$u(\vec{r},t) = \frac{A}{|\vec{r} - \vec{r}_0|^\alpha} \sin(k|\vec{r} - \vec{r}_0| - \omega t)$$
+*where $\vec{r}_0$ is the position of the dot, and $\alpha$ is a parameter that can be set within the range $[0,2]$. The animation should show the superposition of waves from all dots.*
 
 ---
 
-## Mathematical Setup for Simulation
+### 1. Intuitive Context: Dropping Pebbles in a Pond
 
-### Step 1 — Discretize the field
+If Question 8 was about a wave traveling on a single 1D string, this question is about throwing multiple pebbles into a 2D pond or placing multiple speakers in a 3D room. 
 
-Divide the simulation canvas into a grid of pixels. Each pixel at position
-$(p_x, p_y)$ is a field point $\vec{r}$.
+When a pebble hits a pond (at position $\vec{r}_0$), a circular ripple expands outward. The equation provided is the exact mathematical anatomy of that expanding ripple, with a built-in "dimmer switch" ($\alpha$) that dictates how fast the wave fades away as it travels outward.
 
-### Step 2 — Precompute distances
-
-For each source at $(s_x, s_y)$, precompute the distance to every pixel:
-
-$$r_i(p_x, p_y) = \sqrt{(p_x - s_x)^2 + (p_y - s_y)^2}$$
-
-This is done once when a source is added, not every frame. The distance
-does not change over time — only the time argument $\omega t$ advances.
-
-### Step 3 — Evaluate field at each frame
-
-At time $t$, the field value at pixel $(p_x, p_y)$ is:
-
-$$u(p_x, p_y, t) = \sum_{i=1}^{N} \frac{A}{r_i^{\,\alpha}} \cdot \sin(k\, r_i - \omega t)$$
-
-### Step 4 — Normalize and colorize
-
-Normalize $u$ by its maximum absolute value so the color scale always
-uses the full dynamic range regardless of the number of sources:
-
-$$u_{norm} = \frac{u}{\max|u|}$$
-
-Map $u_{norm} \in [-1, 1]$ to a diverging color map
-(e.g. blue for positive / crests, red for negative / troughs, black for zero).
-
-### Step 5 — Performance: sin lookup table
-
-Calling `Math.sin()` per pixel per frame is too slow for real-time rendering.
-Instead, precompute a table of $N_{LUT}$ sine values:
-
-$$\text{LUT}[i] = \sin\!\left(\frac{2\pi i}{N_{LUT}}\right), \quad i = 0, 1, \ldots, N_{LUT}-1$$
-
-Then approximate $\sin(\theta)$ as:
-
-$$\sin(\theta) \approx \text{LUT}\!\left[\left\lfloor\frac{\theta \cdot N_{LUT}}{2\pi}\right\rfloor \bmod N_{LUT}\right]$$
-
-With $N_{LUT} = 8192$ this gives excellent accuracy at $\sim 5\times$ the
-speed of the native function.
+When multiple pebbles are thrown at once, their ripples crash into each other. They don't bounce off one another; they simply add together. This adding together is called **superposition**, and it creates beautiful, complex patterns of "constructive" (amplified) and "destructive" (canceled) interference.
 
 ---
 
+### 2. Deconstructing the Math
+
+Let's break down the equation into two easy-to-understand chunks. 
+
+To make it easier to read, let's define the distance from the wave source to our observation point as **$d$**. 
+Mathematically, $d = |\vec{r} - \vec{r}_0|$.
+
+Now the equation looks like this:
+$$u(\vec{r},t) = \left( \frac{A}{d^\alpha} \right) \cdot \sin(kd - \omega t)$$
+
+#### Chunk 1: The Traveling Wave $\sin(kd - \omega t)$
+This is the "engine" of the wave. It guarantees that the shape oscillates up and down over time ($\omega t$) and moves outward through space ($kd$). Because $d$ represents a radius pointing outward from the source, this guarantees the wave is circular (or spherical), spreading outward in all directions equally.
+
+#### Chunk 2: The Attenuation Factor $\left( \frac{A}{d^\alpha} \right)$
+As a wave expands, it has to stretch its initial energy over a larger and larger area. Therefore, the amplitude (the height of the wave) must shrink the further away you get. $A$ is the starting amplitude, $d$ is the distance, and the exponent **$\alpha$** decides the *rules of the space* the wave is traveling through.
 
 ---
 
-## Key Physics to Observe
+### 3. The Magic of Parameter $\alpha$ (The Physics of Space)
 
-| $\alpha$ value | Amplitude behaviour | Pattern type |
-|----------------|---------------------|--------------|
-| $\alpha = 0$ | Constant everywhere | Uniform amplitude interference |
-| $\alpha = 1$ | Falls as $1/r$ | 2D circular wave (water ripple) |
-| $\alpha = 2$ | Falls as $1/r^2$ | 3D spherical wave cross-section |
+This is the most critical physics concept to highlight to your professor. The parameter $\alpha$ isn't just an arbitrary dial; it literally changes the geometry of the universe the wave exists in!
 
-With two sources, concentric rings of constructive interference (bright bands)
-and destructive interference (dark bands) appear — this is the same physics
-as Young's double-slit experiment. With more sources arranged in a line,
-a **phased array** pattern emerges — the basis of radar, sonar, and 5G antennas.
+* **When $\alpha = 0$ (No fading):** * The attenuation factor becomes $1$. The amplitude never shrinks. 
+    * **Physics meaning:** This physically represents an idealized 1D wave (like a perfect laser beam or a frictionless string) where the energy doesn't have space to spread out laterally, so it maintains its height forever.
+* **When $\alpha = 0.5$ (The 2D Pond):**
+    * The amplitude falls off by the square root of the distance ($1/\sqrt{d}$). 
+    * **Physics meaning:** *Energy* is proportional to amplitude squared. So if amplitude drops by $1/\sqrt{d}$, the *energy* drops by exactly $1/d$. This perfectly perfectly models a 2D ripple on a pond! As the circle expands, its circumference grows proportionally to $d$, so the energy is perfectly conserved but stretched over that growing boundary.
+* **When $\alpha = 1.0$ (The 3D Room):**
+    * The amplitude falls off by $1/d$.
+    * **Physics meaning:** Energy drops by $1/d^2$. This is the famous **Inverse Square Law**. This perfectly models a 3D spherical wave, like a lightbulb shining in a room or a star in space. The energy is conserved but stretched over the surface area of a sphere, which grows at $r^2$.
+* **When $\alpha > 1.0$ (Absorptive/Damped Medium):**
+    * **Physics meaning:** The wave loses energy faster than geometry alone dictates. This represents a wave traveling through a "lossy" medium (like sound trying to travel through thick foam, or light traveling through dense fog). The medium itself is absorbing the energy and turning it into heat.
 
 ---
 
-##  Common Mistakes
+### 4. Superposition: How the Waves Combine
 
-- ❌ **Dividing by zero at the source position** — always add a small offset
-  (e.g. $+0.5$) to distances to avoid `Infinity` values at $r = 0$
-- ❌ **Recomputing distances every frame** — distances are fixed by geometry;
-  only the phase $\omega t$ changes each frame. Precompute and cache.
-- ❌ **Not normalizing the field before colorizing** — without normalization,
-  adding more sources makes all previous colors saturate and the pattern
-  becomes unreadable
+The principle of superposition states that the total displacement of the medium at any given point is simply the algebraic sum of the displacements caused by each individual wave.
+
+If you have three dots (sources), the math is simply:
+$$u_{total} = u_{dot1} + u_{dot2} + u_{dot3}$$
+
+* **Constructive Interference:** When the peaks of two separate waves happen to arrive at the same spot at the exact same time, they add together to create a massive peak.
+* **Destructive Interference:** When the peak of one wave arrives at the exact same time as the trough (valley) of another wave, they equal exactly zero. The water (or medium) goes perfectly flat in that specific spot. 
+
+---
+
+### 5. Presentation Guide 
+
+If you are demonstrating this visually, here are the key phenomena to point out:
+
+1.  **Place just ONE dot and slide $\alpha$:** * Show how at $\alpha = 0$, the screen fills with high-contrast stripes (constant energy). 
+    * Slide it to $\alpha = 1$ and point out how the wave quickly becomes "ghostly" and fades to gray (equilibrium) at the edges of the screen due to the Inverse Square Law.
+2.  **Place TWO dots close together:**
+    * Point out the distinct lines of completely flat gray radiating outward. Explain that these are **"nodal lines"**—areas of permanent destructive interference where the waves from the two sources perfectly cancel each other out continuously.
+3.  **Place a line of dots close together (Phased Array):**
+    * If you place several dots in a straight, tight line, point out how the individual circular ripples merge together to form one giant, flat "wall" of a wave (a plane wave) moving perpendicular to the line. Explain that this is **Huygens' Principle** in action!
