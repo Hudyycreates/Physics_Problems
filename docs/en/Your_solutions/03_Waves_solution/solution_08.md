@@ -1,182 +1,107 @@
-# Section 3 — Problem 8: Which Functions Describe a Traveling Wave?
+### Question 8: Waves
 
-##  Conceptual Introduction
-
-A function $y(x,t)$ is a valid traveling wave **if and only if** it satisfies
-the **wave equation**:
-
+**Which of the following functions can describe a traveling wave?** *Hint: check if it satisfies the wave equation:*
 $$\frac{\partial^2 y}{\partial x^2} = \frac{1}{v^2}\frac{\partial^2 y}{\partial t^2}$$
 
-The method is always the same:
-
-1. Compute the **LHS**: differentiate $y$ twice with respect to $x$
-2. Compute the **RHS**: differentiate $y$ twice with respect to $t$, divide by $v^2$
-3. **Compare**: if LHS $=$ RHS for all $x$ and $t$ — valid wave. If not — invalid.
-
-There is also a powerful shortcut worth knowing before we begin:
-
-> **D'Alembert's Principle:** Any function of the form $f(x \pm vt)$
-> automatically satisfies the wave equation, provided $f$ is twice
-> differentiable. This is because the chain rule gives identical second
-> derivatives on both sides. A function that **cannot** be written purely
-> as $f(x \pm vt)$ will generally fail.
-
-We will verify each case by direct calculation.
+a) $y(x,t) = A\cos(kx^2 - \omega t)$
+b) $y(x,t) = A(x - vt)^2$
+c) $y(x,t) = A\log(x + vt)$
 
 ---
 
-## Part a) — $y(x,t) = A\cos(kx^2 - \omega t)$
+### The Plain English Concept (No Advanced Math Yet)
 
-### Is it of the form $f(x \pm vt)$?
+Before we touch the scary equation, let's understand how a "traveling wave" works.
 
-The argument is $kx^2 - \omega t$. This is **not** linear in $x$ — the $x^2$
-term prevents it from being written as $f(x - vt)$. We already expect failure,
-but let us prove it rigorously.
+Imagine a perfect wave rolling across a pond. The wave moves forward, but its *shape* never changes. In physics, for a math formula to perfectly describe this, the position ($x$) and the time ($t$) must be locked together in a very specific package inside the formula. 
 
-### Computing LHS: $\partial^2 y / \partial x^2$
+They almost always have to look exactly like this:
+**$(x - vt)$** or  **$(x + vt)$**
 
-**First derivative** — chain rule, since the argument is $u = kx^2 - \omega t$:
+Notice that neither the $x$ nor the $t$ has an exponent of 2 attached directly to it *inside* the package. They are partners.
 
-$$\frac{\partial y}{\partial x} = -A\sin(kx^2 - \omega t) \cdot \frac{\partial}{\partial x}(kx^2) = -2Akx\sin(kx^2 - \omega t)$$
+**What is the hint asking us to do?**
+That big equation with the $\partial$ symbols is a "testing machine." 
+Think of it like a balance scale:
+* The **left side** tests the formula by looking *only* at the $x$.
+* The **right side** tests the formula by looking *only* at the $t$.
+* If you run the formula through both sides and they equal each other perfectly, you have a traveling wave!
 
-**Second derivative** — product rule on $2Akx \cdot \sin(kx^2 - \omega t)$:
-
-$$\frac{\partial^2 y}{\partial x^2} = -2Ak\sin(kx^2 - \omega t) - 2Akx \cdot \cos(kx^2 - \omega t) \cdot 2kx$$
-
-$$\text{LHS} = -2Ak\sin(kx^2 - \omega t) - 4Ak^2x^2\cos(kx^2 - \omega t)$$
-
-### Computing RHS: $\frac{1}{v^2}\partial^2 y / \partial t^2$
-
-**First derivative** with respect to $t$:
-
-$$\frac{\partial y}{\partial t} = -A\sin(kx^2 - \omega t) \cdot (-\omega) = A\omega\sin(kx^2 - \omega t)$$
-
-**Second derivative** with respect to $t$:
-
-$$\frac{\partial^2 y}{\partial t^2} = A\omega\cos(kx^2 - \omega t)\cdot(-\omega) = -A\omega^2\cos(kx^2 - \omega t)$$
-
-$$\text{RHS} = \frac{1}{v^2}\cdot\left(-A\omega^2\cos(kx^2 - \omega t)\right) = -\frac{A\omega^2}{v^2}\cos(kx^2 - \omega t)$$
-
-### Comparison
-
-$$\text{LHS} = \underbrace{-2Ak\sin(kx^2-\omega t)}_{\text{sine term}} - \underbrace{4Ak^2x^2\cos(kx^2 - \omega t)}_{x^2\text{-dependent cosine term}}$$
-
-$$\text{RHS} = -\frac{A\omega^2}{v^2}\cos(kx^2-\omega t)$$
-
-The LHS has a **sine term** and an **$x^2$-dependent cosine** that the RHS
-does not. These cannot be equal for all values of $x$ and $t$.
-
-> ❌ **$y = A\cos(kx^2 - \omega t)$ does NOT satisfy the wave equation.**
-> The argument $kx^2$ is not linear in $x$. Squaring $x$ breaks the
-> structure that makes $f(x \pm vt)$ work.
+**What does $\partial^2$ mean?**
+It means "take the derivative twice." If you don't know calculus, just think of a derivative as a math operation that extracts what is attached to a variable. If you do it twice, you extract it twice.
 
 ---
 
-## Part b) — $y(x,t) = A(x - vt)^2$
+### Testing The Options (Step-by-Step)
 
-### Is it of the form $f(x \pm vt)$?
+Let's run each option through the testing machine.
 
-Yes — this is $f(u) = Au^2$ where $u = x - vt$. By D'Alembert's principle
-we expect it to work. Let us verify.
+<br>
 
-### Computing LHS: $\partial^2 y / \partial x^2$
+#### **Testing Option (a):** $y = A\cos(kx^2 - \omega t)$
 
-**First derivative** with respect to $x$:
+We can fail this one just by looking at it, without doing any hard math!
 
-$$\frac{\partial y}{\partial x} = A \cdot 2(x - vt) \cdot 1 = 2A(x - vt)$$
+* Look at the package inside: **$(kx^2 - \omega t)$**
+* Notice that the $x$ is squared ($x^2$), but the time ($t$) is just a regular $t$. 
+* Because they are not balanced inside the package, they will fail the balance scale. When you run them through the testing machine, the $x$ side will generate different shapes than the $t$ side.
+* **Result: FAIL.**
 
-**Second derivative** with respect to $x$:
+<br><br>
 
-$$\frac{\partial^2 y}{\partial x^2} = 2A$$
+#### **Testing Option (b):** $y = A(x - vt)^2$
 
-### Computing RHS: $\frac{1}{v^2}\partial^2 y / \partial t^2$
+This formula has the perfect $(x - vt)$ package. The square is on the *outside*, which is totally fine. Let's run it through the machine.
 
-**First derivative** with respect to $t$
-(chain rule: $\partial(x-vt)/\partial t = -v$):
+**1. Test the left side (look only at $x$):**
+When we run this through the calculus machine for $x$ twice, it strips away the variables and just leaves the constant numbers in front. 
+* The result for the left side is simply: **$2A$**
 
-$$\frac{\partial y}{\partial t} = A \cdot 2(x - vt) \cdot (-v) = -2Av(x - vt)$$
+**2. Test the right side (look only at $t$):**
+When we run it through for $t$, the machine extracts whatever is attached to $t$. Here, a **$-v$** is attached to $t$. Because we run it twice ($\partial^2$), the $-v$ comes out twice. $(-v \times -v = v^2)$. 
+* The result for the $t$ side is: **$2A \times v^2$**
 
-**Second derivative** with respect to $t$:
+**3. Put them on the balance scale:**
+Now we plug our results back into the original testing equation from the hint:
+*(Left Side)* = $\frac{1}{v^2} \times$ *(Right Side)*
 
-$$\frac{\partial^2 y}{\partial t^2} = -2Av \cdot (-v) = 2Av^2$$
+**$2A$** = $\frac{1}{v^2} \times$ **($2A \times v^2$)**
 
-$$\text{RHS} = \frac{1}{v^2} \cdot 2Av^2 = 2A$$
+Look at the right side of the equals sign. We are dividing by $v^2$ and multiplying by $v^2$. They completely cancel each other out!
 
-### Comparison
+**$2A = 2A$**
 
-$$\text{LHS} = 2A = \text{RHS} = 2A \quad \checkmark$$
+* Both sides match perfectly!
+* **Result: PASS.**
 
-Equal for **all** values of $x$ and $t$.
+<br><br>
 
-> ✅ **$y = A(x - vt)^2$ DOES satisfy the wave equation.**
->
-> It represents a parabolic pulse traveling in the $+x$ direction at speed $v$.
-> Note: while mathematically valid, this solution is not physically realistic —
-> the displacement grows without bound as $|x| \to \infty$. Physical waves
-> require additional conditions (e.g. finite energy) to be realistic.
+#### **Testing Option (c):** $y = A\log(x + vt)$
 
----
+This formula also has a perfect $(x + vt)$ package! Let's run it through the machine. Because it's a logarithm, the calculus output looks a little messy, but watch what happens.
 
-## Part c) — $y(x,t) = A\log(x + vt)$
+**1. Test the left side (look only at $x$):**
+The calculus machine turns the logarithm into a fraction. Doing it twice gives us this result:
+* **$\frac{-A}{(x + vt)^2}$**
 
-### Is it of the form $f(x \pm vt)$?
+**2. Test the right side (look only at $t$):**
+Just like in option (b), whatever is attached to $t$ gets extracted twice. Here, a positive **$v$** is attached to $t$. It comes out twice ($v \times v = v^2$). We get the exact same messy fraction, but multiplied by $v^2$:
+* **$\frac{-A \times v^2}{(x + vt)^2}$**
 
-Yes — this is $f(u) = A\log(u)$ where $u = x + vt$. It travels in the
-$-x$ direction (positive $vt$ shifts the profile leftward over time).
+**3. Put them on the balance scale:**
+*(Left Side)* = $\frac{1}{v^2} \times$ *(Right Side)*
 
-### Computing LHS: $\partial^2 y / \partial x^2$
+**$\frac{-A}{(x + vt)^2}$** = $\frac{1}{v^2} \times$ **$\frac{-A \times v^2}{(x + vt)^2}$**
 
-**First derivative** with respect to $x$:
+Once again, look at the right side. The $v^2$ on the bottom cancels out the $v^2$ on the top! You are left with the exact same fraction on both sides.
 
-$$\frac{\partial y}{\partial x} = \frac{A}{x + vt}$$
+**$\frac{-A}{(x + vt)^2}$** = **$\frac{-A}{(x + vt)^2}$**
 
-**Second derivative** with respect to $x$:
-
-$$\frac{\partial^2 y}{\partial x^2} = -\frac{A}{(x + vt)^2}$$
-
-### Computing RHS: $\frac{1}{v^2}\partial^2 y / \partial t^2$
-
-**First derivative** with respect to $t$
-(chain rule: $\partial(x+vt)/\partial t = v$):
-
-$$\frac{\partial y}{\partial t} = \frac{A}{x + vt} \cdot v = \frac{Av}{x + vt}$$
-
-**Second derivative** with respect to $t$:
-
-$$\frac{\partial^2 y}{\partial t^2} = Av \cdot \left(\frac{-v}{(x+vt)^2}\right) = -\frac{Av^2}{(x+vt)^2}$$
-
-$$\text{RHS} = \frac{1}{v^2} \cdot \left(-\frac{Av^2}{(x+vt)^2}\right) = -\frac{A}{(x+vt)^2}$$
-
-### Comparison
-
-$$\text{LHS} = -\frac{A}{(x+vt)^2} = \text{RHS} = -\frac{A}{(x+vt)^2} \quad \checkmark$$
-
-Equal for all $x$ and $t$ where the function is defined (i.e. $x + vt > 0$).
-
-> ✅ **$y = A\log(x + vt)$ DOES satisfy the wave equation.**
->
-> It represents a logarithmic wave profile traveling in the $-x$ direction.
-> Like the parabolic case it is mathematically valid but physically limited —
-> it diverges at $x + vt = 0$ and is undefined for $x + vt \leq 0$.
+* Both sides match perfectly!
+* **Result: PASS.**
 
 ---
 
-## Summary Table
+### Final Result
 
-| Function | Valid wave? | Reason |
-|----------|:-----------:|--------|
-| $A\cos(kx^2 - \omega t)$ | ❌ No | Argument $kx^2$ is not linear in $x$ — extra $x$-dependent terms appear and destroy equality |
-| $A(x-vt)^2$ | ✅ Yes | Pure $f(x-vt)$ — both sides reduce to $2A$ |
-| $A\log(x+vt)$ | ✅ Yes | Pure $f(x+vt)$ — both sides reduce to $-A/(x+vt)^2$ |
-
-## The General Proof (D'Alembert's Solution)
-
-For any twice-differentiable $f$, define $u = x \pm vt$. Then by the chain rule:
-
-$$\frac{\partial^2}{\partial x^2}f(u) = f''(u) \cdot \left(\frac{\partial u}{\partial x}\right)^2 = f''(u) \cdot 1^2 = f''(u)$$
-
-$$\frac{1}{v^2}\frac{\partial^2}{\partial t^2}f(u) = \frac{1}{v^2} \cdot f''(u) \cdot \left(\frac{\partial u}{\partial t}\right)^2 = \frac{1}{v^2} \cdot f''(u) \cdot (\pm v)^2 = f''(u)$$
-
-Both sides equal $f''(u)$ — so any function of $x \pm vt$ is automatically
-a solution. Function (a) fails not because of its shape, but because $kx^2$
-prevents it from being written purely as a function of $x \pm vt$.
+**Both (b) and (c) describe a traveling wave.** *(They both perfectly satisfy the wave equation).*
