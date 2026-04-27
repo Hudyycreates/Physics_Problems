@@ -1,156 +1,84 @@
-### Question 6: Field at a point from a system of charges
+# 6. Field at a point from a system of charges
 
-**Two point charges are given:**
+### Problem Statement
+
+Two point charges are given:
 * $+q$ at point $(-a, 0)$
 * $+2q$ at point $(a, 0)$
 
-**Tasks:**
-1. Determine the field vector $\vec{E}(0,y)$, $\vec{E}(x,0)$ and generally $\vec{E}(x,y)$.
-2. Determine the condition for which the components $E_x=0$, $E_y=0$ and the zero field $\vec{E}=0$.
-3. Calculate the field for: $a = 0.2$ m, $y = 0.3$ m, $q = 2 \mu C$.
-4. Investigate the limit $y \gg a$.
+1.  Determine the field vector $\vec{E}(0, y)$, $\vec{E}(x, 0)$, and generally $\vec{E}(x, y)$.
+2.  Determine the conditions for which $E_x = 0$, $E_y = 0$, and the zero field point $\vec{E} = 0$.
+3.  Calculate the field for: $a = 0.2\text{ m}$, $y = 0.3\text{ m}$, $q = 2\text{ }\mu\text{C}$ at point $(0, y)$.
+4.  Investigate the limit $y \gg a$.
 
 ---
 
-### 1. Intuition & The "Far-Field" Limit (The Best Part)
+### Solution
 
-Before diving into the heavy vector math, let's look at the final task: the limit where $y \gg a$. This is the most physically interesting part of the problem and shows a deep understanding of how the universe works.
+#### 1. General Field Vector $\vec{E}(x, y)$
 
-**The Concept:** Imagine you are standing incredibly far away along the y-axis. From a massive distance, the small physical separation ($2a$) between the two charges becomes completely negligible. 
+Let $\vec{r}_1 = (-a, 0)$ and $\vec{r}_2 = (a, 0)$. For any point $P(x, y)$, the displacement vectors from the charges are:
+* $\vec{r}_{P1} = (x + a)\hat{i} + y\hat{j}$ with magnitude $r_1 = \sqrt{(x+a)^2 + y^2}$
+* $\vec{r}_{P2} = (x - a)\hat{i} + y\hat{j}$ with magnitude $r_2 = \sqrt{(x-a)^2 + y^2}$
 
-Your instruments can no longer resolve two distinct charges; they blur together into a single point. 
+The total electric field is $\vec{E} = \vec{E}_1 + \vec{E}_2$:
 
-Because electric fields obey the **principle of superposition**, the individual fields simply add together. Therefore, from far away, a $+q$ and a $+2q$ charge sitting close together will act exactly like a single, unified $+3q$ point charge sitting right at the origin. 
+$$\vec{E}(x, y) = kq \left[ \frac{(x+a)\hat{i} + y\hat{j}}{((x+a)^2 + y^2)^{3/2}} + \frac{2((x-a)\hat{i} + y\hat{j})}{((x-a)^2 + y^2)^{3/2}} \right]$$
 
-Mathematically, as $y \to \infty$, the complex electric field equation should simply collapse into Coulomb's standard law for a single $3q$ charge: 
 
-$$E \approx \frac{k(3q)}{y^2}$$
-
-*(We will prove this mathematically in Step 4!)*
-
-<br>
 
 ---
 
-### 2. Finding the Zero Field ($\vec{E} = 0$)
+#### 2. Specific Field Vectors
 
-Where do the electric fields from these two charges perfectly cancel each other out? 
+**Case A: On the y-axis, $\vec{E}(0, y)$**
+At $x = 0$, the distances are equal: $r_1 = r_2 = \sqrt{a^2 + y^2}$.
+* $E_x(0, y) = kq \left[ \frac{a}{(a^2+y^2)^{3/2}} + \frac{2(-a)}{(a^2+y^2)^{3/2}} \right] = -\frac{kqa}{(a^2+y^2)^{3/2}}$
+* $E_y(0, y) = kq \left[ \frac{y}{(a^2+y^2)^{3/2}} + \frac{2y}{(a^2+y^2)^{3/2}} \right] = \frac{3kqy}{(a^2+y^2)^{3/2}}$
 
-**The Physical "Tug-of-War":**
-* Because both charges are positive, their electric fields push away from each other along the x-axis. 
-* Therefore, the "zero point" *must* be located somewhere on the x-axis ($y=0$) directly between them. 
-* Because the $+2q$ charge on the right is twice as strong, it pushes harder. This means the zero point must be shoved closer to the weaker $+q$ charge on the left.
+$$\vec{E}(0, y) = \frac{kq}{(a^2 + y^2)^{3/2}} (-a\hat{i} + 3y\hat{j})$$
 
-**The Math:**
-Let's set the opposing fields equal to each other for the region between the charges ($-a < x < a$):
-
-$$\frac{kq}{(x+a)^2} = \frac{k(2q)}{(a-x)^2}$$
-
-*(Note: We use $(a-x)^2$ for the second term to represent the distance pointing leftward from the $+2q$ charge).*
-
-1. Cancel $kq$ from both sides and cross-multiply:
-$$(a-x)^2 = 2(x+a)^2$$
-
-2. Take the square root of both sides (choosing the physical root inside our bounds):
-$$a - x = \sqrt{2}(x + a)$$
-
-3. Expand and solve for $x$:
-$$a - x = \sqrt{2}x + \sqrt{2}a$$
-$$a - \sqrt{2}a = x + \sqrt{2}x$$
-$$a(1 - \sqrt{2}) = x(1 + \sqrt{2})$$
-
-$$x = a\left(\frac{1-\sqrt{2}}{1+\sqrt{2}}\right)$$
-
-*(Notice that $\frac{1-\sqrt{2}}{1+\sqrt{2}}$ yields a negative number. This perfectly proves our intuition: the zero point is at a negative x-coordinate, meaning it sits closer to the weaker $+q$ charge on the left!)*
-
-<br>
+**Case B: On the x-axis, $\vec{E}(x, 0)$**
+At $y = 0$, the vertical component $E_y$ is $0$. The horizontal component depends on the region:
+$$\vec{E}(x, 0) = kq \left[ \frac{\text{sgn}(x+a)}{(x+a)^2} + \frac{2\text{sgn}(x-a)}{(x-a)^2} \right] \hat{i}$$
 
 ---
 
-### 3. The General Math: Vectors & Superposition
+#### 3. Conditions for Zero Components
 
-To find the General Electric Field ($\vec{E}$) at any random point $(x,y)$, we must add the field from charge 1 ($\vec{E}_1$) and charge 2 ($\vec{E}_2$) using vector components. 
+* **For $E_y = 0$:**
+    From the general formula, $E_y = kqy \left( \frac{1}{r_1^3} + \frac{2}{r_2^3} \right)$. Since both charges are positive, the term in parentheses is always positive. Therefore, **$E_y = 0$ only when $y = 0$** (anywhere on the x-axis).
 
-The general formula for an electric field vector at a distance $\vec{r}$ is:
+* **For $E_x = 0$:**
+    On the y-axis ($x=0$), $E_x$ is never zero for finite $y$.
+    On the x-axis ($y=0$), the field can cancel between the charges where they push in opposite directions. This occurs at a point $x$ where:
+    $$\frac{1}{(x+a)^2} = \frac{2}{(a-x)^2}$$
+    Taking the square root: $\frac{1}{x+a} = \frac{\sqrt{2}}{a-x} \implies a-x = \sqrt{2}x + \sqrt{2}a$
+    Solving for $x$: $x = a \frac{1-\sqrt{2}}{1+\sqrt{2}} \approx -0.171a$.
 
-$$\vec{E} = \frac{kq}{r^3} \vec{r}$$
-
-*(Pro-Tip: Using $\vec{r}/r^3$ instead of the standard unit vector $\hat{r}/r^2$ makes splitting things into $x$ and $y$ components much easier for calculus!)*
-
-**For Charge 1 ($+q$ at $-a, 0$):**
-* Distance vector $\vec{r}_1$: from $(-a, 0)$ to $(x,y)$ is $(x+a)\hat{i} + y\hat{j}$
-* Magnitude cubed $r_1^3$: $\left((x+a)^2 + y^2\right)^{3/2}$
-
-**For Charge 2 ($+2q$ at $a, 0$):**
-* Distance vector $\vec{r}_2$: from $(a, 0)$ to $(x,y)$ is $(x-a)\hat{i} + y\hat{j}$
-* Magnitude cubed $r_2^3$: $\left((x-a)^2 + y^2\right)^{3/2}$
-
-**The General Field $\vec{E}(x,y)$:**
-
-$$E_x(x,y) = kq\left[ \frac{x+a}{\left((x+a)^2 + y^2\right)^{3/2}} + \frac{2(x-a)}{\left((x-a)^2 + y^2\right)^{3/2}} \right]$$
-
-$$E_y(x,y) = kq\left[ \frac{y}{\left((x+a)^2 + y^2\right)^{3/2}} + \frac{2y}{\left((x-a)^2 + y^2\right)^{3/2}} \right]$$
-
-*(To answer the first part of the prompt: to find $\vec{E}(0,y)$ or $\vec{E}(x,0)$, you simply plug 0 in for $x$ or $y$ in these master equations).*
-
-<br>
+* **For $\vec{E} = 0$:**
+    Both components must be zero. This happens at:
+    **$y = 0$ and $x \approx -0.171a$**.
 
 ---
 
-### 4. Proving the Far-Field Limit ($y \gg a$)
+#### 4. Numerical Calculation at $(0, 0.3)$
 
-Let's return to our intuition from Step 1 and prove it using the equations we just built. 
+**Given:** $a = 0.2\text{ m}$, $y = 0.3\text{ m}$, $q = 2 \times 10^{-6}\text{ C}$.
+1.  **Calculate $r$:** $r = \sqrt{0.2^2 + 0.3^2} = \sqrt{0.13} \approx 0.3606\text{ m}$
+2.  **Calculate $kq$:** $kq \approx (8.99 \times 10^9)(2 \times 10^{-6}) = 17,980\text{ N}\cdot\text{m}^2/\text{C}$
+3.  **Components:**
+    * $E_x = -\frac{17980 \cdot 0.2}{(0.13)^{3/2}} \approx -76,717\text{ N/C}$
+    * $E_y = \frac{3 \cdot 17980 \cdot 0.3}{(0.13)^{3/2}} \approx 345,228\text{ N/C}$
 
-We will look at a point straight up the y-axis ($x=0$) and push it toward infinity. 
-From our general equation, setting $x=0$ gives:
-
-$$E_y(0,y) = kq\left[ \frac{y}{\left(a^2 + y^2\right)^{3/2}} + \frac{2y}{\left((-a)^2 + y^2\right)^{3/2}} \right]$$
-
-If $y$ is massive compared to $a$ ($y \gg a$), the $a^2$ term essentially becomes zero relative to $y^2$. We can ignore it. 
-The denominator simplifies heavily: $(y^2)^{3/2} = y^3$.
-
-$$E_y \approx kq\left[ \frac{y}{y^3} + \frac{2y}{y^3} \right]$$
-
-$$E_y \approx kq\left[ \frac{1}{y^2} + \frac{2}{y^2} \right]$$
-
-$$E_y \approx \frac{k(3q)}{y^2}$$
-
-**Conclusion:** The math perfectly matches our physical intuition! From far away, the field acts exactly like a single $+3q$ point charge at the origin.
-
-<br>
+**Result:** $\vec{E} \approx (-7.67 \times 10^4 \hat{i} + 3.45 \times 10^5 \hat{j})\text{ N/C}$
 
 ---
 
-### 5. Numerical Calculation
+#### 5. Limit $y \gg a$
 
-**Given values:** * $a = 0.2$ m
-* $y = 0.3$ m
-* $q = 2 \times 10^{-6}$ C
-* Coulomb's constant $k \approx 8.99 \times 10^9$ $\text{N}\cdot\text{m}^2/\text{C}^2$
+When the observation point is very far away, the distance $r \approx y$.
+* $E_x \approx -\frac{kqa}{y^3}$ (Falls off very rapidly)
+* $E_y \approx \frac{3kqy}{y^3} = \frac{k(3q)}{y^2}$
 
-We are finding $\vec{E}(0, 0.3)$. 
-
-**1. Calculate the shared denominator:**
-Since $x=0$, both denominators are the same: 
-$$r^3 = (0.2^2 + 0.3^2)^{3/2} = (0.04 + 0.09)^{3/2} = (0.13)^{3/2} \approx 0.0468$$
-
-**2. Calculate $E_x$:**
-$$E_x = (8.99 \times 10^9)(2 \times 10^{-6}) \left[ \frac{0.2}{0.0468} + \frac{2(-0.2)}{0.0468} \right]$$
-
-$$E_x \approx 17980 \times [ 4.27 - 8.55 ]$$
-
-$$E_x \approx 17980 \times (-4.28) \approx -7.69 \times 10^4 \text{ N/C}$$
-*(Notice that $E_x$ is negative! This makes sense: the stronger $+2q$ charge on the right pushes the test charge harder to the left than the weaker $+q$ pushes it to the right).*
-
-**3. Calculate $E_y$:**
-$$E_y = (8.99 \times 10^9)(2 \times 10^{-6}) \left[ \frac{0.3}{0.0468} + \frac{2(0.3)}{0.0468} \right]$$
-
-$$E_y \approx 17980 \times [ 6.41 + 12.82 ]$$
-
-$$E_y \approx 17980 \times (19.23) \approx 3.45 \times 10^5 \text{ N/C}$$
-
-<br>
-
-### Final Result Vector
-
-**$\vec{E} = (-7.69 \times 10^4 \hat{i} + 3.45 \times 10^5 \hat{j}) \text{ N/C}$**
+**Conclusion:** At great distances, the system behaves like a single point charge of magnitude **$Q = 3q$** located at the origin.
